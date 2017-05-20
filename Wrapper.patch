@@ -443,10 +443,10 @@ index f14a0a4..420f06d 100644
  	{
  		fwrite(&stf, 1, sizeof stf, f);
 diff --git a/src/Kernel32.c b/src/Kernel32.c
-index 0e45635..e41a28b 100644
+index 3a6e9cf..c0d7b78 100644
 --- a/src/Kernel32.c
 +++ b/src/Kernel32.c
-@@ -237,7 +237,7 @@ static int threadFunction(void *data)
+@@ -238,7 +238,7 @@ static int threadFunction(void *data)
  	Thread *thread = (Thread *)data;
  	SDL_SemWait(thread->sem);
  	SDL_DestroySemaphore(thread->sem);
@@ -455,7 +455,7 @@ index 0e45635..e41a28b 100644
  	return 0;
  }
  
-@@ -247,7 +247,8 @@ REALIGN STDCALL void *CreateThread_wrap(void *threadAttributes, uint32_t stackSi
+@@ -248,7 +248,8 @@ REALIGN STDCALL void *CreateThread_wrap(void *threadAttributes, uint32_t stackSi
  {
  	Thread *thread = (Thread *)malloc(sizeof(Thread));
  	thread->handleType = HandleThread;
@@ -553,7 +553,7 @@ index 85147cb..1d8cdc7 100644
  }
  
 diff --git a/src/Wrapper.c b/src/Wrapper.c
-index 4215a01..f77d75f 100644
+index 9b0c96e..2a8fc8e 100644
 --- a/src/Wrapper.c
 +++ b/src/Wrapper.c
 @@ -40,7 +40,7 @@ static const char title[] = "Need For Speed II SE";
@@ -585,15 +585,29 @@ index 4215a01..f77d75f 100644
 -	extern const char binaryGameVersion;
 -	printf("%s\n  Wrapper v%s\n  Game    v%s\n", title, WRAPPER_VERSION, &binaryGameVersion);
 +	extern const char *binaryGameVersion;
-+	printf("%s\n  Wrapper v%s\n  Game    v%s-cpp_r1\n", title, WRAPPER_VERSION, binaryGameVersion);
++	printf("%s\n  Wrapper v%s\n  Game    v%s-cpp_r2\n", title, WRAPPER_VERSION, binaryGameVersion);
  	fflush(stdout);
  
  	if (SDL_Init(SDL_INIT_EVERYTHING & ~SDL_INIT_GAMECONTROLLER) < 0)
+@@ -625,6 +626,13 @@ REALIGN int32_t SDL_NumJoysticks_wrap(void)
+ 	return SDL_NumJoysticks() - (touchpadJoyIdx >= 0);
+ }
+ 
++int main(int argc, char *argv[])
++{
++	void nfs2seEntrypoint();
++	nfs2seEntrypoint();
++	return 0;
++}
++
+ /* Wrapper for functions called from Assembly code for stack realignment */
+ 
+ #include <stdarg.h>
 diff --git a/src/Wrapper.h b/src/Wrapper.h
-index 21c72d8..532f72e 100644
+index 615550e..df815e6 100644
 --- a/src/Wrapper.h
 +++ b/src/Wrapper.h
-@@ -49,7 +49,7 @@
+@@ -54,7 +54,7 @@
  #define false 0
  #define true 1
  
