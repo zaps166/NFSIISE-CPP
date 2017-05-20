@@ -1,5 +1,5 @@
 diff --git a/src/DInput.c b/src/DInput.c
-index 56e4f9b..c230e6a 100644
+index b5dd7dc..0a76304 100644
 --- a/src/DInput.c
 +++ b/src/DInput.c
 @@ -24,6 +24,35 @@
@@ -340,7 +340,7 @@ index 56e4f9b..c230e6a 100644
  	return 0;
  }
 diff --git a/src/EAcsnd.c b/src/EAcsnd.c
-index 4f80d78..b5c788c 100644
+index ae89a3c..5c0326b 100644
 --- a/src/EAcsnd.c
 +++ b/src/EAcsnd.c
 @@ -26,8 +26,11 @@
@@ -403,7 +403,7 @@ index 4f80d78..b5c788c 100644
  }
  REALIGN uint32_t iSNDdirectstop_(void)
 diff --git a/src/FetchTrackRecords.c b/src/FetchTrackRecords.c
-index f14a0a4..420f06d 100644
+index ef59746..86e10eb 100644
 --- a/src/FetchTrackRecords.c
 +++ b/src/FetchTrackRecords.c
 @@ -26,7 +26,7 @@
@@ -443,7 +443,7 @@ index f14a0a4..420f06d 100644
  	{
  		fwrite(&stf, 1, sizeof stf, f);
 diff --git a/src/Kernel32.c b/src/Kernel32.c
-index 3a6e9cf..c0d7b78 100644
+index c81ae28..b289228 100644
 --- a/src/Kernel32.c
 +++ b/src/Kernel32.c
 @@ -238,7 +238,7 @@ static int threadFunction(void *data)
@@ -466,7 +466,7 @@ index 3a6e9cf..c0d7b78 100644
  	SDL_Thread *sdl_thread = SDL_CreateThread(threadFunction, NULL, thread);
  	if (threadId)
 diff --git a/src/Kernel32.h b/src/Kernel32.h
-index e4a7223..de7810f 100644
+index c6c71f1..2658740 100644
 --- a/src/Kernel32.h
 +++ b/src/Kernel32.h
 @@ -131,7 +131,8 @@
@@ -480,7 +480,7 @@ index e4a7223..de7810f 100644
  	} Thread;
  	typedef struct
 diff --git a/src/Timer.c b/src/Timer.c
-index dd64680..a1f6e8d 100644
+index 56d6724..cf31f28 100644
 --- a/src/Timer.c
 +++ b/src/Timer.c
 @@ -30,20 +30,20 @@ static SDL_TimerID timerID;
@@ -529,7 +529,7 @@ index dd64680..a1f6e8d 100644
  	return delay;
  }
 diff --git a/src/User32.c b/src/User32.c
-index 85147cb..1d8cdc7 100644
+index f3285ea..a90dd1d 100644
 --- a/src/User32.c
 +++ b/src/User32.c
 @@ -50,6 +50,7 @@ extern SDL_Window *sdlWin;
@@ -540,7 +540,7 @@ index 85147cb..1d8cdc7 100644
  WindowProc wndProc;
  
  static SDL_TimerID timerID;
-@@ -298,9 +299,9 @@ REALIGN STDCALL BOOL GetMessageA_wrap(MSG *msg, void *hWnd, uint32_t wMsgFilterM
+@@ -302,9 +303,9 @@ REALIGN STDCALL BOOL GetMessageA_wrap(MSG *msg, void *hWnd, uint32_t wMsgFilterM
  	} while (!br);
  	return -1;
  }
@@ -553,7 +553,7 @@ index 85147cb..1d8cdc7 100644
  }
  
 diff --git a/src/Wrapper.c b/src/Wrapper.c
-index 9b0c96e..2a8fc8e 100644
+index 099f894..e2fd791 100644
 --- a/src/Wrapper.c
 +++ b/src/Wrapper.c
 @@ -40,7 +40,7 @@ static const char title[] = "Need For Speed II SE";
@@ -565,7 +565,7 @@ index 9b0c96e..2a8fc8e 100644
  static ProcedureType atExitProcedures[10];
  static uint32_t atExitProcedureCount;
  REALIGN STDCALL void WrapperAtExit(ProcedureType proc)
-@@ -122,10 +122,11 @@ void exit_func(void)
+@@ -124,10 +124,11 @@ void exit_func(void)
  {
  	SDL_TimerID timerID;
  	uint32_t i;
@@ -578,18 +578,18 @@ index 9b0c96e..2a8fc8e 100644
  		SDL_RemoveTimer(timerID);
  	}
  #ifndef WIN32
-@@ -278,8 +279,8 @@ int32_t touchpadJoyIdx = -1;
+@@ -282,8 +283,8 @@ int32_t touchpadJoyIdx = -1;
  
  static void initializeSDL2()
  {
 -	extern const char binaryGameVersion;
--	printf("%s\n  Wrapper v%s\n  Game    v%s\n", title, WRAPPER_VERSION, &binaryGameVersion);
+-	printf("%s\n  Wrapper v%s\n  Game    v%s\n  OpenGL  ", title, WRAPPER_VERSION, &binaryGameVersion);
 +	extern const char *binaryGameVersion;
-+	printf("%s\n  Wrapper v%s\n  Game    v%s-cpp_r2\n", title, WRAPPER_VERSION, binaryGameVersion);
- 	fflush(stdout);
- 
- 	if (SDL_Init(SDL_INIT_EVERYTHING & ~SDL_INIT_GAMECONTROLLER) < 0)
-@@ -625,6 +626,13 @@ REALIGN int32_t SDL_NumJoysticks_wrap(void)
++	printf("%s\n  Wrapper v%s\n  Game    v%s-cpp_r2\n  OpenGL  ", title, WRAPPER_VERSION, binaryGameVersion);
+ #if defined(OPENGL1X)
+ 	puts("1");
+ #elif defined(GLES2)
+@@ -643,6 +644,13 @@ REALIGN int32_t SDL_NumJoysticks_wrap(void)
  	return SDL_NumJoysticks() - (touchpadJoyIdx >= 0);
  }
  
@@ -604,7 +604,7 @@ index 9b0c96e..2a8fc8e 100644
  
  #include <stdarg.h>
 diff --git a/src/Wrapper.h b/src/Wrapper.h
-index 615550e..df815e6 100644
+index 90d2114..66c3792 100644
 --- a/src/Wrapper.h
 +++ b/src/Wrapper.h
 @@ -54,7 +54,7 @@
