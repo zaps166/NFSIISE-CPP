@@ -13,6 +13,7 @@ mkdir -p src || exit 1
 cp NFSIISE/src/*.c src || exit 1
 cp NFSIISE/src/*.h src || exit 1
 cp NFSIISE/src/Version src || exit 1
+cp -r NFSIISE/src/Glide2x src || exit 1
 
 #Patch wrapper sources
 patch -p1 -i Wrapper.patch || exit 1
@@ -30,7 +31,7 @@ else
 fi
 
 #Compile the game
-time gcc -o nfs2se -std=c++14 $CPU_FLAGS $FLAGS -w NFS2SE.cpp src/*.c -lSDL2 -lGL -lm -fpermissive -fno-rtti -fno-exceptions
+time gcc -o nfs2se -std=c++14 $CPU_FLAGS $FLAGS -DGLES2 -w src/*.c NFS2SE.cpp -lSDL2 -lGL -lm -fpermissive -fno-rtti -fno-exceptions
 result=$?
 
 #Remove temporary directory
