@@ -15,7 +15,7 @@ Also it can be less stable than assembly code due to possible translation bugs.
 - other minor bugs.
 
 ### Requirements:
-* SDL2 (32-bit) and Desktop OpenGL (32-bit),
+* SDL2 (32-bit) and GLES2 (32-bit),
 * target must be 32-bit little-endian,
 * GCC 4.9 or higher (not Clang).
 
