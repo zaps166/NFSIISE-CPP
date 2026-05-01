@@ -15572,7 +15572,7 @@ struct packed {
 	{0x18,0x10,0x2,0x10,0x7,(void *)(off_4C4B50)}, /* dword_4C4BC0 */
 	{(void *)(dword_4E2838),nullptr,0x80FFFF03,0x100,(void *)(dword_4E2828),0x4,0x80FFFF03,0x100,(void *)(dword_4E2818),0x8,0x80FFFF03,0x100,(void *)(dword_4E2888),0xC,0x80FFFF03,0x100,(void *)(dword_4E2878),0x10,0x80FFFF03,0x100,(void *)(dword_4E2868),0x14,0x80FFFF03,0x100,(void *)(dword_4E2858),0x18,0x80FFFF03,0x100,(void *)(dword_4E2858),0x1C,0x80FFFF03,0x100,(void *)(dword_4E2848),0x20,0x80FFFF10,nullptr,(void *)(dword_4E2848),0x24,0x80FFFF10,nullptr,(void *)(dword_4E2848),0x28,0x80FFFF10,nullptr,(void *)(dword_4E2848),0x2C,0x80FFFF10,nullptr,nullptr,0x30,0x80FFFF0C,nullptr,nullptr,0x31,0x80FFFF0C,nullptr,nullptr,0x32,0x80FFFF0C,nullptr,nullptr,0x33,0x80FFFF0C,nullptr,nullptr,0x34,0x80FFFF0C,nullptr,nullptr,0x35,0x80FFFF0C,nullptr,nullptr,0x36,0x80FFFF0C,nullptr,nullptr,0x37,0x80FFFF0C,nullptr,nullptr,0x38,0x80FFFF0C,nullptr,nullptr,0x39,0x80FFFF0C,nullptr,nullptr,0x3A,0x80FFFF0C,nullptr,nullptr,0x3B,0x80FFFF0C,nullptr,nullptr,0x3C,0x80FFFF0C,nullptr,nullptr,0x3D,0x80FFFF0C,nullptr,nullptr,0x3E,0x80FFFF0C,nullptr,nullptr,0x3F,0x80FFFF0C,nullptr,nullptr,0x40,0x80FFFF0C,nullptr,nullptr,0x41,0x80FFFF0C,nullptr,nullptr,0x42,0x80FFFF0C,nullptr,nullptr,0x43,0x80FFFF0C,nullptr,nullptr,0x44,0x80FFFF0C,nullptr,nullptr,0x45,0x80FFFF0C,nullptr,nullptr,0x46,0x80FFFF0C,nullptr,nullptr,0x47,0x80FFFF0C,nullptr,nullptr,0x48,0x80FFFF0C,nullptr,nullptr,0x49,0x80FFFF0C,nullptr,nullptr,0x4A,0x80FFFF0C,nullptr,nullptr,0x4B,0x80FFFF0C,nullptr,nullptr,0x4C,0x80FFFF0C,nullptr,nullptr,0x4D,0x80FFFF0C,nullptr,nullptr,0x4E,0x80FFFF0C,nullptr,nullptr,0x4F,0x80FFFF0C,nullptr}, /* off_4C4BE0 */
 	{0x18,0x10,0x1,0x50,0x2C,(void *)(off_4C4BE0)}, /* dword_4C4EA0 */
-	{"1.1.5-cpp_r1"}, /* binaryGameVersion */
+	{"1.1.6-cpp_r1"}, /* binaryGameVersion */
 	{"dbar"}, /* aDbar */
 	{"dlog"}, /* aDlog */
 	{0x0}, /* dword_4C8014 */
@@ -109314,8 +109314,8 @@ Fn(void) Game::_sub_446B20()
 {
 	static const void *const off_446B10[] = {
 		&&loc_446B8C,
-		&&loc_446BFD,
-		&&loc_446BFD,
+		&&loc_446B8C,
+		&&loc_446B8C,
 		&&loc_446C6E,
 	};
 	push32(esi);
@@ -109354,24 +109354,6 @@ loc_446BC8:
 	eax = to32i(eax+0x98); //mov
 	to32i(eax+0x20) = 0; //mov
 loc_446BEC:
-	eax = to32i(dword_50DF9C); //mov
-	edx = (int32_t)(eax+1); //lea
-	to32i(dword_50DF9C) = edx; //mov
-	pop32(edi);
-	pop32(esi);
-	return;
-loc_446BFD:
-	to32i(eax+0xA4) = 0x1900000; //mov
-	to32i(eax+0xA8) = 0x1B80000; //mov
-	to32i(eax+0xAC) = 0x3C0000; //mov
-	to32i(eax+0xB0) = 0x5C0000; //mov
-	to32i(eax+0xB4) = 0x2BC; //mov
-	to32i(eax+0xB8) = 0x18; //mov
-	edx = to32i(eax+0x98); //mov
-	to32i(eax+0xA0) = 0xFFFB0000; //mov
-	to32i(edx+0x1C) = 0x380; //mov
-	eax = to32i(eax+0x98); //mov
-	to32i(eax+0x20) = 1; //mov
 	eax = to32i(dword_50DF9C); //mov
 	edx = (int32_t)(eax+1); //lea
 	to32i(dword_50DF9C) = edx; //mov
